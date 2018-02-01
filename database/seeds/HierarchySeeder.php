@@ -19,6 +19,38 @@ class HierarchySeeder extends Seeder
      */
     public function run()
     {
+        DB::table('co_levels')->truncate();
+        DB::table('co_elements')->truncate();
+
+        // Seed administrative levels before data
+        $this->seed_levels();
+
+        // Seed hierarchy tree nodes
+        $this->seed_nodes();
+    }
+
+    /**
+     * Insert hierarchy level names.
+     *
+     * @return void
+     */
+    private function seed_levels()
+    {
+        collect([
+            'Departamento',
+            'Municipio',
+        ])->each(function($level) {
+            DB::table('co_levels')->insert(['name' => $level]);
+        });
+    }
+
+    /**
+     * Get and insert nodes.
+     *
+     * @return void
+     */
+    private function seed_nodes()
+    {
         $query = sprintf(self::STATE_QUERY, 'Colombia');
         try {
             $response = (new Guzzle)->post(self::OVERPASS_URL, [
