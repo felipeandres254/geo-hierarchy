@@ -16,13 +16,13 @@ class CreateHierarchyTables extends Migration
         // NOTE: The 'co' prefix comes from ISO3166 country code for Colombia
         Schema::create('co_levels', function( Blueprint $table ) {
             $table->increments('level');
-            $table->string('name');
+            $table->string('name', 100);
         });
         Schema::create('co_elements', function( Blueprint $table ) {
             $table->increments('id');
             $table->integer('parent_id')->unsigned()->index()->nullable();
             $table->integer('level')->unsigned()->index()->nullable();
-            $table->string('name');
+            $table->string('name', 100);
 
             // Relationships
             $table->foreign('parent_id')->references('id')->on('co_elements');
