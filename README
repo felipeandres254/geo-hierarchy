@@ -1,3 +1,7 @@
-## Geography Hierarchy
+## OSM Country Hierarchy
 
-This Laravel package is used to download hierarchy information for countries using Open Street Map API.
+This project aims to download hierarchy information for countries, using different frameworks and database engines.
+
+### Usage
+
+Choose your framework directory and run the queries to the OSM Overpass API.
